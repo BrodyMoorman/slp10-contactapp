@@ -1,0 +1,93 @@
+<!--
+FRONT END TO-DO (contacts page)
+- Mobile size optimization and accessibility
+- Table format including
+    * First Name
+    * Last Name
+    * Email (username)
+    * Phone Number
+    * Registration time of contact
+- Maybe more pages like an about us section that says
+our names and roles for the project
+- Logout button
+-->
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title> Friends by Daylight Contact Page</title>
+        <link rel="stylesheet" href="/css/style.css">
+
+    </head>
+
+    <!-- Setting background to black in case background image doesnt cover fully-->
+    <style>
+        html{
+            background-color: black; 
+        }
+    </style>
+
+    <body>
+        <div class="hero">
+
+            <!-- Search bar on top of screen -->
+            <div class="search-bar">
+                <input type="text" class="search-bar" placeholder="Search for Contacts...">
+            </div>
+
+            <!-- Add contact on top of screen -->
+            <div class="add-contact-image">
+                <button id= "contact-button" type="button" class="contacts-toggle" onclick="showAddContact()">
+                    <img src="/images/add-contact.jpg">
+                </button>
+
+            <!-- Table -->
+            <div id="table" class="contact-table">
+                <table>
+
+
+
+                </table>
+            </div>
+
+            <!-- Add new contact box -->
+            <div id="contact-box" class="contact-box">
+                <div class="add-contact-box">
+                    <h2 class="newContactHeading"> Add New Contact </h2>
+                    <form id="add-contacts" class="add-contact-group">
+                        <input type="firstName" class="input-field" placeholder="First Name" required>
+                        <input type="lastName" class="input-field" placeholder="Last Name" required>
+                        <input type="email" class="input-field" placeholder="Email" required>
+                        <input type="phone" class="input-field" placeholder="Phone Number" required>
+                        <input type="password" class="input-field" placeholder="Password" required>
+                        <button type="submit" class="submit-btn" onclick="addContact();">Add Contact</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Script that either hides table or hides new contact box -->
+        <script>
+            function showAddContact()
+            {
+                var contactElement = document.getElementById("contact-box")
+                var tableElement = document.getElementById("table");
+
+
+                if (contactElement.style.display === "none")
+                {
+                    contactElement.style.display = "block";
+                    tableElement.style.display = "none";
+
+                }
+                else
+                {
+                    contactElement.style.display = "none";
+                    tableElement.style.display = "block";
+                }
+            }
+        </script>
+    </body>
+</html>
