@@ -1,38 +1,62 @@
-<?php declare(strict_types = 1);
 
-$serverName = "localhost:3306";
-$dbUsername = "root";
-$dbPassword = "dee1967e777233cb6cfdd70201c34be47a29e68cd09505c2";
-$dbName = "ContantManager";
+<?php
 
-// Create connection
-$connection = new mysqli($serverName, $dbUsername, $dbPassword, $dbName);
-
-// Check connection
-if ($connection->connect_error) {
-  exit("Connection failed: " . $connection->connect_error);
-}
-echo "Connected successfully";
-
-function login() {
-	$query = "SELECT user_id, first, last FROM users WHERE email=$_POST['email'], password=$_POST['password']"
-	$result = $conn->query($sql);
-
-	if ($result->num_rows === 1) {
-	  echo "User exists";
-	} else {
-	  echo "Error: " . $query . "<br>" . $connection->error;
+	function getRequestInfo()
+	{
+		return json_decode(file_get_contents('php://input'), true);
 	}
 
-	$data = array("id"=>$result.id, "fname"=>$result.firstName, "lname"=>$result.lastName, "err"=>"");
-	header("Content-Type: application/json");
+	function sendResultInfoAsJson($object)
+	{
+		header('Content-type: application/json');
+		echo $object;
+	}
 
-	echo json_encode($data);
+	function returnWithError($error)
+	{
+		$value = '{"id": 0, "firstName": "", "lastName": "", "error": "' . $error . '"}';
+		sendResultInfoAsJson($value);
+	}
 
-	return json_encode($data);
-}
-login();
+	function returnWithInfo($firstName, $lastName, $id)
+	{
+		$value = '{"id": ' . $id . ', "firstName": "' . $firstName . '", "lastName": "' . $lastName . '", "error": ""}';
+		sendResultInfoAsJson($value);
+	}
 
- $connection->close();
+	$input = getRequestInfo();
+  $serverName = "localhost";
+  $dbUsername = "remotedbuser";
+  $dbPassword = "vhzXN7ddr5NW9zU3eUJ4.";
+  $dbName = "ContantManager";
+
+	// Establish connection
+	$connection = new mysqli($serverName, $dbUsername, $dbPassword, $dbName); 
+
+	// Check connection
+	if ($connection->connect_error)
+	{
+		returnWithError($connection->connect_error);
+	}
+	else
+	{
+		// Prepare statement and execute query
+		$statement = $connection->prepare("SELECT user_id, first, last FROM users WHERE email=? AND password =?");
+		$statement->bind_param("ss", $input["login"], $input["password"]);
+		$statement->execute();
+		$result = $statement->get_result();
+
+		if($row = $result->fetch_assoc())
+		{
+			returnWithInfo($row['first'], $row['last'], $row['user_id']);
+		}
+		else
+		{
+			returnWithError("No Records Found");
+		}
+
+		$statement->close();
+		$connection->close();
+	}
 
 ?>

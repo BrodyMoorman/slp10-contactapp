@@ -14,8 +14,7 @@ FRONT END TO-DO (index page)
     <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">    
         <title> Friends by Daylight Contact Manager! </title>
-        <script type="text/javascript" src="js/md5.js"></script>
-        <script type="text/javascript" src="js/code.js"></script>
+        <script type="text/javascript" src="script.js"></script>
         <link rel="stylesheet" href="/css/style.css">
     </head>
     <!-- Setting background to black in case background image doesnt cover fully-->
@@ -25,9 +24,11 @@ FRONT END TO-DO (index page)
         }
     </style>
     <body>
+
         <!--overall document formatting-->
         <div class="hero">
-            
+            <div class="notification-container">
+            </div>
             <h1 class="title"> Friends By Daylight Contact Manager! </h1>
             
             <!-- Login / SignUp box -->
@@ -38,18 +39,20 @@ FRONT END TO-DO (index page)
                         <button type="button" class="toggle-btn" onclick="signup()">Sign Up</button>
                     </div>
                 <form id= "login" class="login-group">
-                    <input type="email" class="input-field" placeholder="Email" required>
-                    <input type="password" class="input-field" placeholder="Password" required>
-                    <button type="submit" class="submit-btn" onclick="doLogin();">Log in</button>
+                    <input type="email" class="input-field" placeholder="Email" id="loginEmail" required>
+                    <input type="password" class="input-field" placeholder="Password" id="loginPassword" required>
+                    <button  class="submit-btn" onclick="doLogin();">Log in</button>
+                    <div class="result" id="loginResult"></div>
+
                 </form>
 
                 <form id="signup" class="signup-group">
-                    <input type="firstN" class="input-field" placeholder="First Name" required>
-                    <input type="lastN" class="input-field" placeholder="Last Name" required>
-                    <input type="email" class="input-field" placeholder="Email" required>
-                    <input type="phone" class="input-field" placeholder="Phone Number" required>
-                    <input type="password" class="input-field" placeholder="Password" required>
+                    <input type="firstN" class="input-field" placeholder="First Name" id="signupFirst" required>
+                    <input type="lastN" class="input-field" placeholder="Last Name" id="signupLast" required>
+                    <input type="email" class="input-field" placeholder="Email" id="signupEmail" required>
+                    <input type="password" class="input-field" placeholder="Password" id="signupPassword" required>
                     <button type="submit" class="submit-btn" onclick="doSignup();">Sign Up</button>
+                    <div class="result" id="signupResult"></div>
                     <!-- Figure out the javascript for the login and sign up commands -->
                 </form>
             </div>

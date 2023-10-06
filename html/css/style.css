@@ -12,6 +12,7 @@
     background-position: center;
     background-size: cover;
     position: absolute;
+    overflow: hidden;
 }
 
 /* Styling for login / signup page on index.html */
@@ -122,8 +123,9 @@
 .contact-box{
     width: 380px;
     height: 480px;
-    position: relative;
-    margin: 10% auto;
+    position: absolute;
+    left: 40%;
+    top: 25%;
     background: #232323;
     padding: 0px;
     overflow: hidden;
@@ -161,17 +163,26 @@
 /* Styling for search bar on contacts.html */
 .search-bar
 {
-    float: left;
-    margin: auto;
-    margin-top: 2%;
-    margin-left: 20%;
+
     border-radius: 28px;
+    
     border: 12px;
     font-size: 24px;
-    width: 60%;
+    width: 100%;
     height: 50px;
     outline: none;
     text-align: center;
+
+}
+.search-bar-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 30%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 /* Styling for contacts toggle button on contacts.html */
@@ -183,19 +194,193 @@
     overflow: hidden;
     background-color: transparent;
     border: none;
-    margin: 2% auto;
+    
     overflow: hidden;
     position: absolute;
     cursor: pointer;
-    margin-left: -8%
+    
 }
 
-/* Start of styling for table on contacts.html */
-#table
-{
-    width: 500px;
-    height: 500px;
+.contact-table {
+    margin-bottom: 10%;
+    width: 80%;
+    height: 80%;
+    
+    
+}
+
+.contact-table-container {
+    margin: 50px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contact-list-header {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
     color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: #232323; 
+}
+.contact-list-item {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+
+    border : 1px solid black;
+    margin-top: 5px;
+}
+.contact-list-content {
+
+    width: 100%;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.contact-page-topbar {
+    height: 50px;
+
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 40px;
+  
+}
+.contact-page-main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.action-btn {
+    
+    height: 40px;
+    border-radius: 10px;
+    background:none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.action-btn i {
+    font-size: 20px;
+    
+}
+.action-btn:hover {
+    
+    color: rgb(87, 87, 87);
+}
+.add-ctc-buttn {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    border-radius: 10px;
+    border : 2px solid rgb(255, 255, 255);
+    margin-top: 5px;
+    font-size: xx-large;
+    cursor: pointer;
+}
+.add-ctc-buttn:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+.search-btn {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.search-btn i {
+    font-size: 20px;
+    color: white;
+}
+.logout {
+    cursor: pointer;
+}
+.user-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    gap: 10px;
+}
+.user-group h3 {
+    color: white;
+}
+.user-group i {
+    color: rgb(235, 93, 93);
+    font-size: 20px;
+}
+
+.result {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.notification-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.notification {
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+    width: 250px;
+    margin-bottom: 10px;
+    position: sticky;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+
+
+}
+
+.success {
+    background-color: rgb(111, 212, 124);
+    border: 3px solid rgb(37, 112, 47);
+    color: white;
+    
+}
+
+.error {
+    background-color: rgb(214, 67, 67);
+    border: 3px solid rgb(112, 37, 37);
+    color: #ffffff;
 }
 
 
