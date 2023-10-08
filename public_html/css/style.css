@@ -7,6 +7,9 @@
 }
 
 /* Styling the overall document */
+body{
+    overflow: hidden;
+}
 .hero{
     min-height: 100%;
     min-width: 100%;
@@ -262,7 +265,7 @@
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: 40px;
+    
     
   
 }
@@ -358,6 +361,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    height: 50px;
 
 }
 

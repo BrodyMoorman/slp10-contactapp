@@ -49,16 +49,16 @@ our names and roles for the project
 
             <!-- Search bar on top of screen -->
             <div class="contact-page-main">
-            <div class="contact-page-topbar">
+            <div id="topbar" class="contact-page-topbar">
                 
-                <div class="search-bar-container">
+                <div id="search-group" class="search-bar-container">
                     <input type="text" id="search" class="search-bar" placeholder="Search for Contacts...">
                     <button type="submit" class="search-btn" onClick="searchContacts()"><i class="fas fa-search"></i></button>
                 </div>
     
                 <!-- Add contact on top of screen -->
                 <div class="user-group">
-                <h3 id="userName">Brody Moorman</h3>
+                <h3 id="userName"></h3>
                 <div class="logout"><i onclick="logout()" class="fa-solid fa-right-from-bracket"></i></div>
                 </div>
             </div>
@@ -123,7 +123,7 @@ our names and roles for the project
                         <input id="editEmail" type="email" class="input-field" placeholder="Email" required>
                         <input id="editPhone" type="phone" class="input-field" placeholder="Phone Number" required>
                         <button type="submit" id="edit-btn" class="submit-btn" onclick="editContact();">Edit Contact</button>
-                        <div style="text-align: center; width: 100%; cursor: pointer; color: white; padding-top: 10px;" onclick="showEditContact()"><p>Cancel</p></div>
+                        <div style="text-align: center; width: 100%; cursor: pointer; color: white; padding-top: 10px;" onclick="showEditContact(0)"><p>Cancel</p></div>
                     </form>
                 </div>
             </div>
@@ -138,18 +138,24 @@ our names and roles for the project
             {
                 var contactElement = document.getElementById("contact-box")
                 var tableElement = document.getElementById("table");
+                var searchElement = document.getElementById("search-group");
+                var topbarElement = document.getElementById("topbar");
 
 
                 if (contactElement.style.display === "none")
                 {
                     contactElement.style.display = "block";
                     tableElement.style.display = "none";
+                    searchElement.style.display = "none";
+                    topbarElement.style.justifyContent = "flex-end";
 
                 }
                 else
                 {
                     contactElement.style.display = "none";
                     tableElement.style.display = "flex";
+                    searchElement.style.display = "flex";
+                    topbarElement.style.justifyContent = "space-between";
                 }
             }
             function showEditContact(id)
@@ -157,6 +163,8 @@ our names and roles for the project
                 const tmpid = parseInt(id)
                 var contactElement = document.getElementById("edit-box")
                 var tableElement = document.getElementById("table");
+                var searchElement = document.getElementById("search-group");
+                var topbarElement = document.getElementById("topbar");
 
 
                 if (contactElement.style.display === "none")
@@ -164,6 +172,8 @@ our names and roles for the project
                     populateEdit(tmpid)
                     contactElement.style.display = "block";
                     tableElement.style.display = "none";
+                    searchElement.style.display = "none";
+                    topbarElement.style.justifyContent = "flex-end";
 
                 }
                 else
@@ -171,6 +181,8 @@ our names and roles for the project
                     populateEdit(0)
                     contactElement.style.display = "none";
                     tableElement.style.display = "flex";
+                    searchElement.style.display = "flex";
+                    topbarElement.style.justifyContent = "space-between";
                 }
             }
             const changeText = () => {
