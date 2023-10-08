@@ -31,7 +31,12 @@ our names and roles for the project
 <script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', function() 
 	{
-		readCookie();
+		if(readCookie()){
+       searchContacts();
+       showAddContact();
+       showEditContact(0);
+    }
+    
 
 	}, false);
 	</script>
@@ -39,14 +44,16 @@ our names and roles for the project
     <body>
         
         <div class="hero">
+        <div id="noti" class="notification-container">
+            </div>
 
             <!-- Search bar on top of screen -->
             <div class="contact-page-main">
             <div class="contact-page-topbar">
                 
                 <div class="search-bar-container">
-                    <input type="text" class="search-bar" placeholder="Search for Contacts...">
-                    <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                    <input type="text" id="search" class="search-bar" placeholder="Search for Contacts...">
+                    <button type="submit" class="search-btn" onClick="searchContacts()"><i class="fas fa-search"></i></button>
                 </div>
     
                 <!-- Add contact on top of screen -->
@@ -71,6 +78,9 @@ our names and roles for the project
                             <h2>Phone Number</h2>
                         </div>
                         <div class="contact-list-item-name">
+                            <h2>Timestamp</h2>
+                        </div>
+                        <div class="contact-list-item-name">
                             <h2>Actions</h2>
                         </div>
                     </div>
@@ -92,12 +102,28 @@ our names and roles for the project
             <div id="contact-box" class="contact-box">
                 <div class="add-contact-box">
                     <h2 class="newContactHeading"> Add New Contact </h2>
-                    <form id="add-contacts" class="add-contact-group">
-                        <input type="firstName" class="input-field" placeholder="First Name" required>
-                        <input type="lastName" class="input-field" placeholder="Last Name" required>
-                        <input type="email" class="input-field" placeholder="Email" required>
-                        <input type="phone" class="input-field" placeholder="Phone Number" required>
+                    <form id="add-contacts" onsubmit="return false" class="add-contact-group">
+                        <input id="addfirstName" type="firstName" class="input-field" placeholder="First Name" required>
+                        <input id="addlastName" type="lastName" class="input-field" placeholder="Last Name" required>
+                        <input id="addEmail" type="email" class="input-field" placeholder="Email" required>
+                        <input id="addPhone" type="phone" class="input-field" placeholder="Phone Number" required>
                         <button type="submit" class="submit-btn" onclick="addContact();">Add Contact</button>
+                        <div style="text-align: center; width: 100%; cursor: pointer; color: white; padding-top: 10px;" onclick="showAddContact()"><p>Cancel</p></div>
+                    </form>
+                </div>
+            </div>
+            <!-- Edit contact box -->
+            <div id="edit-box" class="contact-box">
+                <div class="add-contact-box">
+                    <h2 class="newContactHeading"> Edit Contact </h2>
+                    <form id="add-contacts" onsubmit="return false" class="add-contact-group">
+                        <input readonly style="display: none;" class="input-field" id="editContactId">
+                        <input id="editfirstName" type="firstName" class="input-field" placeholder="First Name" required>
+                        <input id="editlastName" type="lastName" class="input-field" placeholder="Last Name" required>
+                        <input id="editEmail" type="email" class="input-field" placeholder="Email" required>
+                        <input id="editPhone" type="phone" class="input-field" placeholder="Phone Number" required>
+                        <button type="submit" id="edit-btn" class="submit-btn" onclick="editContact();">Edit Contact</button>
+                        <div style="text-align: center; width: 100%; cursor: pointer; color: white; padding-top: 10px;" onclick="showEditContact()"><p>Cancel</p></div>
                     </form>
                 </div>
             </div>
@@ -122,6 +148,27 @@ our names and roles for the project
                 }
                 else
                 {
+                    contactElement.style.display = "none";
+                    tableElement.style.display = "flex";
+                }
+            }
+            function showEditContact(id)
+            {
+                const tmpid = parseInt(id)
+                var contactElement = document.getElementById("edit-box")
+                var tableElement = document.getElementById("table");
+
+
+                if (contactElement.style.display === "none")
+                {
+                    populateEdit(tmpid)
+                    contactElement.style.display = "block";
+                    tableElement.style.display = "none";
+
+                }
+                else
+                {
+                    populateEdit(0)
                     contactElement.style.display = "none";
                     tableElement.style.display = "flex";
                 }
