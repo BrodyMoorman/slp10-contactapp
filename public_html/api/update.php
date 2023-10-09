@@ -27,8 +27,8 @@
   else
   {
 		// Prepare statement and execute query
-		$statement = $connection->prepare("UPDATE contacts SET contact_number=?, contact_firstname=?, contact_lastname=?, contact_email=? WHERE contact_id=?");
-		$statement->bind_param("ssssi", $input["phone"], $input["firstName"], $input["lastName"], $input["email"], $input["id"]);
+		$statement = $connection->prepare("UPDATE contacts SET contact_number=?, contact_firstname=?, contact_lastname=?, contact_email=?, contact_color=? WHERE contact_id=?");
+		$statement->bind_param("sssssi", $input["phone"], $input["firstName"], $input["lastName"], $input["email"], $input["color"], $input["id"]);
 		$statement->execute();
 		$result = $statement->get_result();
 

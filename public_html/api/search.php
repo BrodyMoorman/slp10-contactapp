@@ -31,12 +31,12 @@
   	if ($input["query"] === "") // causes error
   	{
 			// Prepare statement and execute query
-			$statement = $connection->prepare("SELECT * FROM contacts WHERE creator_id=?");
+			$statement = $connection->prepare("SELECT * FROM contacts WHERE creator_id=? ORDER BY contact_firstname");
 			$statement->bind_param("i", $input["id"]);
   	}
   	else
   	{
-			$statement = $connection->prepare("SELECT * FROM contacts WHERE creator_id=? AND (contact_firstname like ? OR contact_lastname like ? OR contact_number like ? OR contact_email like ?)");
+			$statement = $connection->prepare("SELECT * FROM contacts WHERE creator_id=? AND (contact_firstname like ? OR contact_lastname like ? OR contact_number like ? OR contact_email like ?) ORDER BY contact_firstname");
       $query = "%" . $input["query"] . "%";
 			$statement->bind_param("issss", $input["id"], $query, $query, $query, $query);
   	}
@@ -52,6 +52,7 @@
       $data->date=$row["contact_date"];
       $data->phone=$row["contact_number"];
       $data->email=$row["contact_email"];
+      $data->color=$row["contact_color"];
       
       array_push($list, $data);
     }

@@ -17,9 +17,9 @@
 		sendResultInfoAsJson($value);
 	}
 
-	function returnWithInfo($firstName, $lastName, $phone, $email, $id)
+	function returnWithInfo($firstName, $lastName, $phone, $email, $id, $color)
 	{
-		$value = '{"firstName": "' . $firstName . '", "lastName": "' . $lastName . '", "phone": "' . $phone . '", "email": "' . $email . '", "id": "' . $id . '"}';
+		$value = '{"firstName": "' . $firstName . '", "lastName": "' . $lastName . '", "phone": "' . $phone . '", "email": "' . $email . '", "id": "' . $id . '", "color": "' . $color . '"}';
 		sendResultInfoAsJson($value);
 	}
 
@@ -47,7 +47,7 @@
 
 		if($row = $result->fetch_assoc())
 		{
-			returnWithInfo($row['contact_firstname'], $row['contact_lastname'], $row['contact_number'], $row['contact_email'], $row['contact_id']);
+			returnWithInfo($row['contact_firstname'], $row['contact_lastname'], $row['contact_number'], $row['contact_email'], $row['contact_id'], $row['contact_color']);
 		}
 		else
 		{

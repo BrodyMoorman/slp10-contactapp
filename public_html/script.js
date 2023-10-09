@@ -128,6 +128,7 @@ const createContact = (contact) => {
     div.classList.add('contact-list-item');
     div.setAttribute('id', contact.contactId);
     const name = contact.firstName + " " + contact.lastName
+    div.style.borderColor = contact.color
     
     div.innerHTML = `
         <p>${name}</p>
@@ -211,11 +212,13 @@ const editContact = () => {
     const email = document.getElementById("editEmail").value;
     const phone = document.getElementById("editPhone").value;
     const idInput = document.getElementById("editContactId").value;
+    const colorInput = document.getElementById("color-well").value;
+    console.log("colorInput" + colorInput)
     if(first == "" || last== ""|| email == "" || phone == ""){
         makeErrorNotification("Cannot Submit Empty Value");
         return;
     }
-    const tmp = {id:parseInt(idInput), firstName:first, lastName:last, email:email, phone:phone};
+    const tmp = {id:parseInt(idInput), firstName:first, lastName:last, email:email, phone:phone, color:colorInput};
     let jsonPayload = JSON.stringify( tmp );
     console.log(jsonPayload)
     const url = urlBase + '/update' + extension;
@@ -405,12 +408,14 @@ const populateEdit = (id) => {
     const email = document.getElementById("editEmail");
     const phone = document.getElementById("editPhone");
     const idInput = document.getElementById("editContactId");
+    const colorInput = document.getElementById("color-well");
     if(id == 0) {
         first.value = ""
         last.value = ""
         email.value = ""
         phone.value = ""
         idInput.value = ""
+        colorInput.value = "#000000"
         return;
     }
     const tmp = {id:id};
@@ -433,6 +438,7 @@ const populateEdit = (id) => {
                     email.value = jsonObject.email
                     phone.value = jsonObject.phone
                     idInput.value = jsonObject.id
+                    colorInput.value = jsonObject.color
 
             }
         };
@@ -458,7 +464,9 @@ const makeErrorNotification = (message) => {
     const notification = document.createElement('div');
     notification.classList.add('notification');
     notification.classList.add('error');
-    notification.innerHTML = message;
+    notification.innerHTML = `
+    <i class="fa-solid fa-circle-xmark"></i>
+    ${message}`;
     notificationContainer.appendChild(notification);
     setTimeout(() => {
         notification.remove();
@@ -470,9 +478,13 @@ const makeSuccessNotification = (message) => {
     const notification = document.createElement('div');
     notification.classList.add('notification');
     notification.classList.add('success');
-    notification.innerHTML = message;
+    notification.innerHTML = `
+    <i class="fa-solid fa-circle-check"></i>
+    ${message}
+    `;
     notificationContainer.appendChild(notification);
     setTimeout(() => {
+        
         notification.remove();
     }, 3000);
 }

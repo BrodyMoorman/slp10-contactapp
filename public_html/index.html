@@ -1,13 +1,4 @@
-<!--
-FRONT END TO-DO (index page)
-- Log-In verification to decide whether a valid user input is being given
-    * If an invalid login is given, create a error to let the user know
-      the login isn't valid
-- Registration information given to database
-- 
 
-
--->
 
 <!DOCTYPE html>
 <html>
@@ -30,7 +21,7 @@ FRONT END TO-DO (index page)
         <div class="hero">
             <div id="noti" class="notification-container">
             </div>
-            <h1 class="title"> Friends By Daylight Contact Manager! </h1>
+            <h1 class="title"><img src="/images/logo.png" alt="Friends By Daylight"></h1>
             
             <!-- Login / SignUp box -->
             <div class="form-box">
@@ -40,7 +31,7 @@ FRONT END TO-DO (index page)
                         <button type="button" class="toggle-btn" onclick="signup()">Sign Up</button>
                     </div>
                 <form id= "login" onsubmit="return false" class="login-group">
-                    <input type="email" class="input-field" placeholder="Email" id="loginEmail" required>
+                    <input type="email"  class="input-field" placeholder="Email" id="loginEmail" required>
                     <input type="password" class="input-field" placeholder="Password" id="loginPassword" required>
                     <button type="submit"  class="submit-btn" onclick="doLogin();">Log in</button>
                     <div class="result" id="loginResult"></div>
